@@ -1,6 +1,4 @@
-package com.jsm.bluemarble.account.api.dto.request
-
-import com.jsm.bluemarble.account.domain.Account
+package com.jsm.bluemarble.domain.account.api.dto.request
 
 data class CreateAccountRequest(
     val username: String,

@@ -1,4 +1,4 @@
-package com.jsm.bluemarble.account.domain
+package com.jsm.bluemarble.domain.account.domain
 
 data class Account(
     val id: Long?,

@@ -1,13 +1,8 @@
-package com.jsm.bluemarble.account.infra.entity
+package com.jsm.bluemarble.domain.account.infra.entity
 
-import com.jsm.bluemarble.account.domain.Account
 import com.jsm.bluemarble.common.infra.entity.BaseEntity
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import com.jsm.bluemarble.domain.account.domain.Account
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "account")

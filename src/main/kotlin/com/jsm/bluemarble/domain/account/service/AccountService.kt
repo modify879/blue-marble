@@ -1,6 +1,7 @@
-package com.jsm.bluemarble.account.service
+package com.jsm.bluemarble.domain.account.service
 
 import com.jsm.bluemarble.account.api.dto.request.CreateAccountRequest
+import com.jsm.bluemarble.account.api.dto.response.JwtResponse
 import com.jsm.bluemarble.account.domain.Account
 import com.jsm.bluemarble.account.domain.repository.AccountRepository
 import com.jsm.bluemarble.common.util.PasswordUtils
@@ -25,5 +26,14 @@ class AccountService(
         )
 
         accountRepository.save(account)
+    }
+
+    fun login(username: String, password: String): JwtResponse {
+        val account = accountRepository.findByUsername(username) ?: throw IllegalArgumentException("login failed")
+        if (!PasswordUtils.matchPassword(password, account.password)) {
+            throw IllegalArgumentException("login failed")
+        }
+
+
     }
 }

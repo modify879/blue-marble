@@ -1,7 +1,7 @@
-package com.jsm.bluemarble.account.api
+package com.jsm.bluemarble.domain.account.api
 
-import com.jsm.bluemarble.account.api.dto.request.CreateAccountRequest
-import com.jsm.bluemarble.account.service.AccountService
+import com.jsm.bluemarble.domain.account.api.dto.request.CreateAccountRequest
+import com.jsm.bluemarble.domain.account.service.AccountService
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
