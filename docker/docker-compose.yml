@@ -1,0 +1,13 @@
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:17-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: blue_marble
+      POSTGRES_INITDB_ARGS: "-E UTF-8 --locale=ko_KR.UTF-8"
+    volumes:
+      - ./db_data:/var/lib/postgresql/data
