@@ -22,6 +22,9 @@ class AccountEntity(
 
     @Column(nullable = true)
     var profile: String? = null,
+
+    @Column(nullable = false)
+    var role: Role = Role.USER,
 ) : BaseEntity() {
     fun toDomain(): Account = Account(
         id = this.id,
@@ -29,6 +32,7 @@ class AccountEntity(
         password = this.password,
         nickname = this.nickname,
         profile = this.profile,
+        role = this.role
     )
 
     companion object {
@@ -38,6 +42,9 @@ class AccountEntity(
             password = account.password,
             nickname = account.nickname,
             profile = account.profile,
+            role = account.role,
         )
     }
 }
+
+enum class Role { USER, ADMIN }

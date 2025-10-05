@@ -1,3 +1,32 @@
 spring:
   application:
     name: blue-marble
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/blue_marble
+    username: admin
+    password: admin
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        physical_naming_strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategySnakeCaseImpl
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+
+auth.token:
+  access-token:
+    secret-key: c2xOTGFaQnRUV3BKd0ljV085bGRzMk9IR2JVbU1HVEw=
+    expiration-in-sec: 1800
+  refresh-token:
+    length: 128
+    expiration-in-sec: 604800
