@@ -1,5 +1,6 @@
-package com.jsm.bluemarble.domain.auth.infra
+package com.jsm.bluemarble.config.security
 
+import com.jsm.bluemarble.domain.auth.infra.jwt.JwtProvider
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
@@ -28,7 +29,7 @@ class JwtAuthenticationFilter(
                 val role = jwtProvider.getRole(token)
                 if (accountId != null && role != null) {
                     val authentication = UsernamePasswordAuthenticationToken(
-                        User(accountId.toString(), "", listOf()),
+                        User(accountId.toString(), "", emptyList()),
                         null,
                         listOf(SimpleGrantedAuthority("ROLE_${role.name}"))
                     )
@@ -36,7 +37,6 @@ class JwtAuthenticationFilter(
                 }
             }
         }
-
         filterChain.doFilter(request, response)
     }
 }

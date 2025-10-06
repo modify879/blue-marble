@@ -1,4 +1,4 @@
-package com.jsm.bluemarble.domain.auth.infra
+package com.jsm.bluemarble.domain.auth.infra.jwt
 
 import com.jsm.bluemarble.config.properties.JwtProperties
 import com.jsm.bluemarble.domain.account.domain.Account
@@ -23,18 +23,15 @@ class JwtProvider(
             .signWith(key, Jwts.SIG.HS256)
             .claim("id", account.id)
             .claim("role", account.role)
-            .expiration(Date(Date().time + props.accessToken.expirationInSec * 1000))
+            .claim("expiration", Date().time + props.accessToken.expirationInSec * 1000)
             .compact()
 
     override fun generateRefreshToken(): String = UUID.randomUUID().toString().replace("-", "")
 
     override fun validate(token: String): Boolean {
         return try {
-            Jwts.parser()
-                .verifyWith(key)
-                .build()
-                .parseSignedClaims(token)
-            true
+            val claims = getClaims(token)
+            claims["expiration"].toString().toLong() > Date().time
         } catch (_: Exception) {
             false
         }
@@ -44,8 +41,7 @@ class JwtProvider(
         return try {
             val claims = getClaims(token)
             claims["id"].toString().toLong()
-        } catch (e: Exception) {
-            e.printStackTrace()
+        } catch (_: Exception) {
             null
         }
     }
