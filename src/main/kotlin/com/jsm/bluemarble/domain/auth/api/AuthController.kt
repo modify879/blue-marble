@@ -1,10 +1,11 @@
 package com.jsm.bluemarble.domain.auth.api
 
-import com.jsm.bluemarble.domain.auth.domain.AuthToken
+import com.jsm.bluemarble.domain.auth.api.dto.request.LoginRequest
+import com.jsm.bluemarble.domain.auth.api.dto.response.AuthTokenResponse
 import com.jsm.bluemarble.domain.auth.service.AuthService
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
@@ -14,8 +15,8 @@ class AuthController(
 ) {
 
     @PostMapping("/login")
-    fun login(
-        @RequestParam username: String,
-        @RequestParam password: String
-    ): AuthToken = authService.login(username, password)
+    fun login(@RequestBody loginRequest: LoginRequest): AuthTokenResponse {
+        val authToken = authService.login(loginRequest.username, loginRequest.password)
+        return AuthTokenResponse.from(authToken)
+    }
 }

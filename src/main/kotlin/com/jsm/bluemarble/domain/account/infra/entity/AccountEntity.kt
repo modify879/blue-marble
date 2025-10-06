@@ -11,21 +11,23 @@ class AccountEntity(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, columnDefinition = "text")
     var username: String,
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "text")
     var password: String,
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "text")
     var nickname: String,
 
-    @Column(nullable = true)
+    @Column(nullable = true, columnDefinition = "text")
     var profile: String? = null,
 
-    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, columnDefinition = "text")
     var role: Role = Role.USER,
 ) : BaseEntity() {
+
     fun toDomain(): Account = Account(
         id = this.id,
         username = this.username,

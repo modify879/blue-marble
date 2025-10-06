@@ -13,7 +13,6 @@ data class JwtProperties(
     )
 
     data class RefreshToken(
-        val length: Int,
         val expirationInSec: Int,
     )
 }
