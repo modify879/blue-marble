@@ -6,12 +6,14 @@ import com.jsm.bluemarble.domain.account.domain.Account
 import com.jsm.bluemarble.domain.account.domain.repository.AccountRepository
 import com.jsm.bluemarble.domain.account.infra.entity.Role
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class AccountService(
     private val accountRepository: AccountRepository
 ) {
 
+    @Transactional
     fun createAccount(request: CreateAccountRequest) {
         if (request.password != request.confirmPassword) {
             throw IllegalArgumentException("Passwords do not match")

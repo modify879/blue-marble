@@ -11,10 +11,11 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         format_sql: true
+        highlight_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
         physical_naming_strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
     open-in-view: false
@@ -22,12 +23,11 @@ spring:
 logging:
   level:
     org.hibernate.SQL: debug
-    org.hibernate.type.descriptor.sql.BasicBinder: trace
+    org.hibernate.orm.jdbc.bind: trace
 
 auth.token:
   access-token:
     secret-key: c2xOTGFaQnRUV3BKd0ljV085bGRzMk9IR2JVbU1HVEw=
     expiration-in-sec: 1800
   refresh-token:
-    length: 128
     expiration-in-sec: 604800

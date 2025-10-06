@@ -11,6 +11,6 @@ data class Account(
     val profile: String?,
     val role: Role
 ) {
-
+    
     fun matchPassword(password: String): Boolean = PasswordUtils.matchPassword(password, this.password)
 }
